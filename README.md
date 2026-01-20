@@ -1,1 +1,61 @@
-# Zentry
+<div align="center">
+  <br />
+    <img src="https://github.com/user-attachments/assets/ab600f24-f4d9-4cef-8f1e-3fd9194afb30" alt="Project Banner">
+  <br />
+
+  <div>
+    <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
+    <img src="https://img.shields.io/badge/-GSAP-black?style=for-the-badge&logoColor=white&logo=greensock&color=88CE02" alt="greensock" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+  </div>
+
+</div>
+
+## 📋 目錄
+
+- [📋 目錄](#-目錄)
+- [✨ 專案亮點](#-專案亮點)
+- [🛠 技術工具](#-技術工具)
+- [🚀 快速上手](#-快速上手)
+- [🔗 素材與聲明](#-素材與聲明)
+
+---
+
+## ✨ 專案亮點
+
+- **捲動同步 (Scroll-Driven)**：利用 GSAP ScrollTrigger 確保動畫節奏與使用者捲動手感一致。
+- **幾何裁切轉場 (Clip-path)**：實作非傳統的矩形轉場，讓頁面切換看起來更有電影感。
+- **影片串接**：處理多個影片元件的加載與播放邏輯，確保在轉場時不會有斷層。
+- **互動回饋**：滑鼠 hover 時的 3D 傾斜與變換效果。
+
+## 🛠 技術工具
+
+- **React** - UI 邏輯與元件架構。
+- **GSAP (GreenSock)** - 動畫的核心，包含 ScrollTrigger。
+- **Tailwind CSS** - 快速處理樣式，特別是複雜的排版。
+- **Vite** - 開發環境與打包。
+
+## 🚀 快速上手
+
+如果你想在本地跑跑看：
+
+**安裝與啟動**
+
+```bash
+pnpm install
+pnpm run dev
+
+```
+
+1. **預覽**
+   開啟 `http://localhost:5173` 即可看到結果。
+
+## 🔗 素材與聲明
+
+- **素材下載**：本專案使用的影片與圖片可在此下載 [Google Drive](https://drive.google.com/file/d/12hCVnanOAUmM1vzz2dTWZ_uEFGG8xDcT/view)。
+- **特別說明**：
+- 設計概念與視覺風格 100% 歸 **Zentry** 所有。
+- 這個專案純粹是**技術交流與學習**用途，請勿用於商業目的。
+- 如果你覺得這對你有幫助，歡迎點個 Star 或一起討論交流。
+
+---
