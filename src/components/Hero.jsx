@@ -18,7 +18,8 @@ const Hero = () => {
   const totalVideos = 4;
   const loading = loadedVideos < totalVideos - 1;
   const nextVideoRef = useRef(null);
-  const miniVideoRef = useRef(null);
+  const currentVideoRef = useRef(null);
+  const videoFrameRef = useRef(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -33,8 +34,8 @@ const Hero = () => {
   useGSAP(
     () => {
       if (hasClicked) {
-        gsap.set("#next-video", { visibility: "visible" });
-        gsap.to("#next-video", {
+        gsap.set(nextVideoRef.current, { visibility: "visible" });
+        gsap.to(nextVideoRef.current, {
           transformOrigin: "center center",
           scale: 1,
           width: "100%",
@@ -43,7 +44,7 @@ const Hero = () => {
           ease: "power1.inOut",
           onStart: () => nextVideoRef.current.play(),
         });
-        gsap.from("#current-video", {
+        gsap.from(currentVideoRef.current, {
           transformOrigin: "center center",
           scale: 0,
           duration: 1.5,
@@ -58,16 +59,16 @@ const Hero = () => {
   );
 
   useGSAP(() => {
-    gsap.set("#video-frame", {
+    gsap.set(videoFrameRef.current, {
       clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
       borderRadius: "0% 0% 40% 10%",
     });
-    gsap.from("#video-frame", {
+    gsap.from(videoFrameRef.current, {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       borderRadius: "0% 0% 0% 0%",
       ease: "power1.inOut",
       scrollTrigger: {
-        trigger: "#video-frame",
+        trigger: videoFrameRef.current,
         start: "center center",
         end: "bottom center",
         scrub: true,
@@ -90,7 +91,7 @@ const Hero = () => {
       )}
 
       <div
-        id="video-frame"
+        ref={videoFrameRef}
         className="bg-blue-75 relative z-10 h-dvh w-screen overflow-hidden rounded-lg"
       >
         <div>
@@ -101,11 +102,10 @@ const Hero = () => {
                 className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
               >
                 <video
-                  ref={miniVideoRef}
+                  ref={currentVideoRef}
                   src={getVideoSrc((currentIndex % totalVideos) + 1)}
                   loop
                   muted
-                  id="current-video"
                   className="size-64 origin-center scale-150 object-cover object-center"
                   onLoadedData={handleVideoLoad}
                 />
@@ -118,14 +118,11 @@ const Hero = () => {
             src={getVideoSrc(currentIndex)}
             loop
             muted
-            id="next-video"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
           <video
-            src={getVideoSrc(
-              currentIndex === totalVideos - 1 ? 1 : currentIndex,
-            )}
+            src={getVideoSrc(currentIndex)}
             autoPlay
             loop
             muted
