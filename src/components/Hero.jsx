@@ -1,36 +1,32 @@
+import { useRef, useState } from "react"; // React 核心優先
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import { TiLocationArrow } from "react-icons/ti";
-import { useRef, useState } from "react";
 
-import Button from "./Button";
+import Button from "./Button"; // 內部組件
 import VideoPreview from "./VideoPreview";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const TOTAL_VIDEOS = 4;
+const VIDEO_DIR = "videos/hero";
+
 const Hero = () => {
+  // 1. 響應式狀態 (State)
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
-
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  const totalVideos = 4;
-  const loading = loadedVideos < totalVideos - 1;
+  // 2. 計算屬性 (Computed Properties)
+  const isLoading = loadedVideos < TOTAL_VIDEOS - 1;
+
+  // 3. 引用 (Refs)
   const nextVideoRef = useRef(null);
   const currentVideoRef = useRef(null);
   const videoFrameRef = useRef(null);
 
-  const handleVideoLoad = () => {
-    setLoadedVideos((prev) => prev + 1);
-  };
-
-  const handleMiniVdClick = () => {
-    setHasClicked(true);
-
-    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
-  };
-
+  // 4. 偵聽器 (Watchers / Effects)
   useGSAP(
     () => {
       if (hasClicked) {
@@ -76,11 +72,26 @@ const Hero = () => {
     });
   });
 
-  const getVideoSrc = (index) => `videos/hero-${index}.webm`;
+  // 5. 核心邏輯與函數 (Functions)
+  const handleVideoLoad = () => {
+    setLoadedVideos((prev) => prev + 1);
+  };
+
+  /**
+   * 處理縮圖點擊事件
+   * 更新點擊狀態並循環切換至下一個影片索引
+   */
+  const handleMiniVideoClick = () => {
+    setHasClicked(true);
+    setCurrentIndex((prevIndex) => (prevIndex % TOTAL_VIDEOS) + 1);
+  };
+
+  // 輔助函數：避免直接在 JSX 拼接字串
+  const getVideoSrc = (index) => `${VIDEO_DIR}-${index}.webm`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {loading && (
+      {isLoading && (
         <div className="flex-center absolute z-100 h-dvh w-screen overflow-hidden bg-violet-50">
           <div className="three-body">
             <div className="three-body__dot"></div>
@@ -98,12 +109,12 @@ const Hero = () => {
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <VideoPreview>
               <div
-                onClick={handleMiniVdClick}
+                onClick={handleMiniVideoClick}
                 className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
               >
                 <video
                   ref={currentVideoRef}
-                  src={getVideoSrc((currentIndex % totalVideos) + 1)}
+                  src={getVideoSrc((currentIndex % TOTAL_VIDEOS) + 1)}
                   loop
                   muted
                   className="size-64 origin-center scale-150 object-cover object-center"
