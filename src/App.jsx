@@ -1,9 +1,10 @@
+import Hero from "./components/Hero";
+
 function App() {
   return (
-    <main>
-      <h1 className="text-7xl text-violet-300 underline font-bold">
-        hello world
-      </h1>
+    <main className="relative min-h-screen w-screen overflow-x-hidden">
+      <Hero />
+      <div className="h-[50vh] w-screen bg-blue-500"></div>
     </main>
   );
 }
