@@ -18,6 +18,7 @@ const Hero = () => {
   const totalVideos = 4;
   const loading = loadedVideos < totalVideos - 1;
   const nextVideoRef = useRef(null);
+  const miniVideoRef = useRef(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -80,7 +81,6 @@ const Hero = () => {
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {loading && (
         <div className="flex-center absolute z-100 h-dvh w-screen overflow-hidden bg-violet-50">
-          {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
@@ -101,7 +101,7 @@ const Hero = () => {
                 className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
               >
                 <video
-                  ref={nextVideoRef}
+                  ref={miniVideoRef}
                   src={getVideoSrc((currentIndex % totalVideos) + 1)}
                   loop
                   muted
