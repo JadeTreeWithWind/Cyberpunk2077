@@ -147,7 +147,7 @@ const Hero = () => {
 
             <Button
               id="watch-trailer"
-              title="Watch trailer"
+              title="觀看預告"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-yellow-300 flex-center gap-1"
             />
