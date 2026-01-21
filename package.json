@@ -12,9 +12,11 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@tailwindcss/vite": "^4.1.18",
+    "clsx": "^2.1.1",
     "gsap": "^3.14.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

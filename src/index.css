@@ -56,11 +56,11 @@ body {
 
 @layer utilities {
   .nav-hover-btn {
-    @apply relative ms-10 font-general text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white cursor-pointer;
+    @apply font-general relative ms-10 cursor-pointer text-xs text-blue-50 uppercase after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white;
   }
 
   .floating-nav {
-    @apply bg-black rounded-lg border;
+    @apply rounded-lg border bg-black;
   }
 
   .absolute-center {
@@ -68,7 +68,7 @@ body {
   }
 
   .flex-center {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 
   .mask-clip-path {
@@ -76,19 +76,19 @@ body {
   }
 
   .hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply font-zentry text-5xl font-black uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
   }
 
   .about-subtext {
-    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular-web text-lg md:max-w-[34rem];
+    @apply font-circular-web absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center text-lg md:max-w-[34rem];
   }
 
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+    @apply absolute top-0 left-1/2 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-7xl leading-[.8] text-white uppercase sm:px-32 md:text-[6rem];
   }
 
   .animated-word {
@@ -96,15 +96,10 @@ body {
     transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
     transform-origin: 50% 50% -150px !important;
     will-change: opacity, transform;
-
-    b {
-      font-family: "Zentry";
-      font-feature-settings: "ss01" on;
-    }
   }
 
   .bento-tilt_1 {
-    @apply relative border border-white/20 col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative col-span-2 overflow-hidden rounded-md border border-white/20 transition-transform duration-300 ease-out;
   }
 
   .bento-tilt_2 {
@@ -112,21 +107,21 @@ body {
   }
 
   .bento-title {
-    @apply uppercase md:text-6xl text-4xl font-black font-zentry;
+    @apply font-zentry text-4xl font-black uppercase md:text-6xl;
   }
 
   .story-img-container {
-    @apply relative md:h-dvh h-[90vh] w-full;
+    @apply relative h-[90vh] w-full md:h-dvh;
     filter: url("#flt_tag");
   }
 
   .story-img-mask {
-    @apply absolute left-0 top-0 size-full overflow-hidden md:left-[20%] md:top-[-10%] md:size-4/5;
+    @apply absolute top-0 left-0 size-full overflow-hidden md:top-[-10%] md:left-[20%] md:size-4/5;
     clip-path: polygon(4% 0, 83% 21%, 100% 73%, 0% 100%);
   }
 
   .story-img-content {
-    @apply absolute w-full md:h-dvh h-[50dvh] opacity-100 left-10 top-16 md:left-0 md:top-10 lg:left-[-300px] lg:top-[-100px];
+    @apply absolute top-16 left-10 h-[50dvh] w-full opacity-100 md:top-10 md:left-0 md:h-dvh lg:top-[-100px] lg:left-[-300px];
     transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale(1);
   }
 
@@ -139,7 +134,7 @@ body {
   }
 
   .gallery-img-4 {
-    @apply sm:size-80 md:h-96 md:w-[25rem] rounded-lg;
+    @apply rounded-lg sm:size-80 md:h-96 md:w-[25rem];
   }
 
   .sword-man-clip-path {
@@ -153,6 +148,11 @@ body {
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
   }
+}
+
+.special-font b {
+  font-family: "Zentry";
+  font-feature-settings: "ss01" on;
 }
 
 .indicator-line {
