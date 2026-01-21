@@ -1,61 +1,85 @@
-import { gsap } from "gsap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
+/**
+ * 影片預覽組件
+ * 處理滑鼠懸停時的 3D 傾斜效果
+ */
 export const VideoPreview = ({ children }) => {
+  // 1. 響應式狀態 (State)
   const [isHovering, setIsHovering] = useState(false);
 
-  const sectionRef = useRef(null); // Reference for the container section
-  const contentRef = useRef(null); // Reference for the inner content
+  // 2. 引用 (Refs)
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
+  // 用於節流的時間戳記 ref
+  const lastMouseMoveTime = useRef(0);
 
-  // Handles mouse movement over the container
+  // 3. 核心邏輯與函數 (Functions)
+  /**
+   * 處理滑鼠移動事件
+   * 包含節流邏輯以優化效能
+   */
   const handleMouseMove = ({ clientX, clientY, currentTarget }) => {
-    const rect = currentTarget.getBoundingClientRect(); // Get dimensions of the container
+    const now = Date.now();
+    // 簡單節流：每 16ms (約 60fps) 僅執行一次
+    if (now - lastMouseMoveTime.current < 16) return;
+    lastMouseMoveTime.current = now;
 
-    const xOffset = clientX - (rect.left + rect.width / 2); // Calculate X offset
-    const yOffset = clientY - (rect.top + rect.height / 2); // Calculate Y offset
+    const rect = currentTarget.getBoundingClientRect();
+    const xOffset = clientX - (rect.left + rect.width / 2);
+    const yOffset = clientY - (rect.top + rect.height / 2);
 
     if (isHovering) {
-      // Move the container slightly in the direction of the cursor
+      // 使用 gsap.contextSafe 或直接調用 (此處直接調用，因為在 React 事件中)
       gsap.to(sectionRef.current, {
         x: xOffset,
         y: yOffset,
-        rotationY: xOffset / 2, // Add 3D rotation effect
+        rotationY: xOffset / 2,
         rotationX: -yOffset / 2,
-        transformPerspective: 500, // Perspective for realistic 3D effect
+        transformPerspective: 500,
         duration: 1,
         ease: "power1.out",
+        overwrite: "auto", // 確保動畫流暢，自動覆蓋舊動畫
       });
 
-      // Move the inner content in the opposite direction for a parallax effect
       gsap.to(contentRef.current, {
         x: -xOffset,
         y: -yOffset,
         duration: 1,
         ease: "power1.out",
+        overwrite: "auto",
       });
     }
   };
 
-  useEffect(() => {
-    // Reset the position of the content when hover ends
-    if (!isHovering) {
-      gsap.to(sectionRef.current, {
-        x: 0,
-        y: 0,
-        rotationY: 0,
-        rotationX: 0,
-        duration: 1,
-        ease: "power1.out",
-      });
+  // 4. 偵聽器 (Watchers) - 處理懸停狀態重置
+  useGSAP(
+    () => {
+      if (!isHovering) {
+        gsap.to(sectionRef.current, {
+          x: 0,
+          y: 0,
+          rotationY: 0,
+          rotationX: 0,
+          duration: 1,
+          ease: "power1.out",
+        });
 
-      gsap.to(contentRef.current, {
-        x: 0,
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      });
-    }
-  }, [isHovering]);
+        gsap.to(contentRef.current, {
+          x: 0,
+          y: 0,
+          duration: 1,
+          ease: "power1.out",
+        });
+      }
+    },
+    {
+      dependencies: [isHovering],
+      scope: sectionRef,
+    },
+  );
 
   return (
     <section

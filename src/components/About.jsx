@@ -1,11 +1,13 @@
-import gsap from "gsap";
 import { useRef } from "react";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 
 import AnimatedTitle from "./AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ABOUT_IMG_SRC = "img/about.webp";
 
 const About = () => {
   const containerRef = useRef(null);
@@ -57,8 +59,9 @@ const About = () => {
         <div className="h-dvh w-screen" ref={containerRef}>
           <div className="mask-clip-path about-image">
             <img
-              src="img/about.webp"
-              alt="Background"
+              src={ABOUT_IMG_SRC}
+              alt=""
+              loading="lazy"
               className="absolute top-0 left-0 size-full object-cover"
             />
           </div>
