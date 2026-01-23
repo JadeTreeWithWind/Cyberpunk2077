@@ -8,7 +8,8 @@ import { TiLocationArrow } from "react-icons/ti";
 import Button from "./Button";
 
 // Constants
-const NAV_ITEMS = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+const NAV_ITEMS = ["關於", "介紹", "故事", "聯絡我們"];
+const NAV_LINKS = ["#about", "#features", "#story", "#contact"];
 const AUDIO_SRC = "/audio/loop.mp3";
 
 const NavBar = () => {
@@ -31,6 +32,19 @@ const NavBar = () => {
   const handleAudioToggle = () => {
     setIsAudioPlaying((prev) => !prev);
     setIsIndicatorActive((prev) => !prev);
+  };
+
+  const handleScroll = (e) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute("href");
+    if (!href.startsWith("#")) return;
+
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   // 5. Effects (邏輯與 Side Effects)
@@ -108,11 +122,12 @@ const NavBar = () => {
 
           <div className="flex h-full items-center">
             <div className="hidden md:block">
-              {NAV_ITEMS.map((item) => (
+              {NAV_ITEMS.map((item, index) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={NAV_LINKS[index]}
                   className="nav-hover-btn"
+                  onClick={handleScroll}
                 >
                   {item}
                 </a>
