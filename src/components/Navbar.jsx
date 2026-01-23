@@ -43,7 +43,14 @@ const NavBar = () => {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      const elementPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - 10;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -136,7 +143,14 @@ const NavBar = () => {
 
             <button
               onClick={handleAudioToggle}
-              className="ml-6 flex h-4 w-4 cursor-pointer items-center space-x-0.5"
+              className="nav-hover-btn hidden cursor-pointer items-center space-x-0.5 md:block"
+            >
+              {isAudioPlaying ? "關閉BGM" : "開啟BGM"}
+            </button>
+
+            <button
+              onClick={handleAudioToggle}
+              className="ml-4 flex h-4 w-4 cursor-pointer items-center space-x-0.5"
             >
               <audio
                 ref={audioElementRef}
