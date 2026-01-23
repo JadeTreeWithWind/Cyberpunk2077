@@ -100,7 +100,7 @@ const NavBar = () => {
           <div className="flex items-center gap-7">
             <Button
               id="product-button"
-              title="聯絡我們"
+              title="前往購買"
               rightIcon={<TiLocationArrow />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
             />
