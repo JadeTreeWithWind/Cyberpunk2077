@@ -1,45 +1,58 @@
 import { useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
+const VIDEO_PATHS = {
+  FEATURE_1: "videos/feature-1.webm",
+  FEATURE_2: "videos/feature-2.webm",
+  FEATURE_3: "videos/feature-3.webm",
+  FEATURE_4: "videos/feature-4.webm",
+  FEATURE_5: "videos/feature-5.webm",
+};
+
 /**
  * BentoTilt 組件
  * 實現滑鼠懸停時的 3D 傾斜效果
  *
- * 優化說明：
- * 使用 useRef 直接操作 DOM style，避免 onMouseMove 觸發 React 重新渲染，
- * 顯著提升動畫效能。
+ * 優化：
+ * 1. 使用 requestAnimationFrame 進行事件節流
+ * 2. 動態控制 transition 以確保移動時無延遲，移出時平滑
  *
  * @param {Object} props
  * @param {React.ReactNode} props.children - 內部內容
  * @param {String} props.className - 樣式類名
  */
 export const BentoTilt = ({ children, className = "" }) => {
-  // 1. Refs
   const itemRef = useRef(null);
+  const frameRef = useRef(null);
 
-  // 2. Logic (Event Handlers)
   const handleMouseMove = (event) => {
     if (!itemRef.current) return;
 
-    const { left, top, width, height } =
-      itemRef.current.getBoundingClientRect();
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
 
-    const relativeX = (event.clientX - left) / width;
-    const relativeY = (event.clientY - top) / height;
+    frameRef.current = requestAnimationFrame(() => {
+      const { left, top, width, height } =
+        itemRef.current.getBoundingClientRect();
 
-    const tiltX = (relativeY - 0.5) * 5;
-    const tiltY = (relativeX - 0.5) * -5;
+      const relativeX = (event.clientX - left) / width;
+      const relativeY = (event.clientY - top) / height;
 
-    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
+      const tiltX = (relativeY - 0.5) * 5; // 傾斜角度係數
+      const tiltY = (relativeX - 0.5) * -5;
 
-    // Direct DOM Update (Performance)
-    itemRef.current.style.transform = newTransform;
+      const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.95, 0.95, 0.95)`;
+
+      // Direct DOM Update
+      itemRef.current.style.transform = newTransform;
+    });
   };
 
   const handleMouseLeave = () => {
-    if (itemRef.current) {
-      itemRef.current.style.transform = "";
-    }
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    if (!itemRef.current) return;
+
+    // 恢復原狀
+    itemRef.current.style.transform = "";
   };
 
   return (
@@ -48,8 +61,10 @@ export const BentoTilt = ({ children, className = "" }) => {
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      // 使用 CSS transition 確保滑鼠移出時平滑復原，移入時即時響應
-      style={{ transition: "transform 0.1s ease-out" }}
+      // 優化：只在非 Hover 狀態 (transform 為空) 時啟用 transition，避免移動時的延遲感
+      style={{
+        transition: "transform 0.1s ease-out",
+      }}
     >
       {children}
     </div>
@@ -66,11 +81,9 @@ export const BentoTilt = ({ children, className = "" }) => {
  * @param {Boolean} props.isComingSoon - 是否顯示 Coming Soon 按鈕
  */
 export const BentoCard = ({ src, title, description, isComingSoon }) => {
-  // 1. Refs
   const hoverButtonRef = useRef(null);
   const hoverEffectRef = useRef(null);
 
-  // 2. Logic
   const handleMouseMove = (event) => {
     if (!hoverButtonRef.current || !hoverEffectRef.current) return;
 
@@ -78,7 +91,6 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    // Direct DOM Update (Performance)
     hoverEffectRef.current.style.background = `radial-gradient(100px circle at ${x}px ${y}px, #656fe288, #00000026)`;
   };
 
@@ -116,12 +128,10 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
             onMouseLeave={handleMouseLeave}
             className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs text-white/20 uppercase"
           >
-            {/* Radial gradient hover effect */}
             <div
               ref={hoverEffectRef}
               className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
               style={{
-                // 預設樣式，動態部分由 JS 控制
                 background:
                   "radial-gradient(100px circle at 0px 0px, #656fe288, #00000026)",
               }}
@@ -155,7 +165,7 @@ const Features = () => (
 
       <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
         <BentoCard
-          src="videos/feature-1.webm"
+          src={VIDEO_PATHS.FEATURE_1} // 使用常數
           title={
             <>
               radia<b>n</b>t
@@ -169,7 +179,7 @@ const Features = () => (
       <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1! md:row-span-2!">
           <BentoCard
-            src="videos/feature-2.webm"
+            src={VIDEO_PATHS.FEATURE_2}
             title={
               <>
                 zig<b>m</b>a
@@ -182,7 +192,7 @@ const Features = () => (
 
         <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1! md:ms-0">
           <BentoCard
-            src="videos/feature-3.webm"
+            src={VIDEO_PATHS.FEATURE_3}
             title={
               <>
                 n<b>e</b>xus
@@ -195,7 +205,7 @@ const Features = () => (
 
         <BentoTilt className="bento-tilt_1 me-14 md:col-span-1! md:me-0">
           <BentoCard
-            src="videos/feature-4.webm"
+            src={VIDEO_PATHS.FEATURE_4}
             title={
               <>
                 az<b>u</b>l
@@ -218,7 +228,7 @@ const Features = () => (
 
         <BentoTilt className="bento-tilt_2">
           <video
-            src="videos/feature-5.webm"
+            src={VIDEO_PATHS.FEATURE_5}
             loop
             muted
             autoPlay
