@@ -40,7 +40,10 @@ const NavBar = () => {
     if (!audioElementRef.current) return;
 
     if (isAudioPlaying) {
-      audioElementRef.current.play();
+      audioElementRef.current.play().catch((error) => {
+        console.warn("Audio playback failed:", error);
+        setIsAudioPlaying(false);
+      });
     } else {
       audioElementRef.current.pause();
     }
@@ -125,7 +128,6 @@ const NavBar = () => {
                 className="hidden"
                 src={AUDIO_SRC}
                 loop
-                autoPlay
               />
 
               {[1, 2, 3, 4].map((bar) => (
