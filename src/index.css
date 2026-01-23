@@ -60,7 +60,7 @@ body {
   }
 
   .floating-nav {
-    @apply rounded-lg border bg-black;
+    @apply rounded-lg border sm:bg-black;
   }
 
   .absolute-center {
@@ -134,7 +134,7 @@ body {
   }
 
   .gallery-img-4 {
-    @apply rounded-lg sm:size-80 md:h-96 md:w-[25rem];
+    @apply rounded-lg sm:size-80 md:h-96 md:w-100;
   }
 
   .sword-man-clip-path {
