@@ -8,7 +8,8 @@ import { TiLocationArrow } from "react-icons/ti";
 import Button from "./Button";
 
 // Constants
-const NAV_ITEMS = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+const NAV_ITEMS = ["關於", "介紹", "故事", "聯絡我們"];
+const NAV_LINKS = ["#about", "#features", "#story", "#contact"];
 const AUDIO_SRC = "/audio/loop.mp3";
 
 const NavBar = () => {
@@ -31,6 +32,26 @@ const NavBar = () => {
   const handleAudioToggle = () => {
     setIsAudioPlaying((prev) => !prev);
     setIsIndicatorActive((prev) => !prev);
+  };
+
+  const handleScroll = (e) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute("href");
+    if (!href.startsWith("#")) return;
+
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const elementPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - 10;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   // 5. Effects (邏輯與 Side Effects)
@@ -108,11 +129,12 @@ const NavBar = () => {
 
           <div className="flex h-full items-center">
             <div className="hidden md:block">
-              {NAV_ITEMS.map((item) => (
+              {NAV_ITEMS.map((item, index) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={NAV_LINKS[index]}
                   className="nav-hover-btn"
+                  onClick={handleScroll}
                 >
                   {item}
                 </a>
@@ -121,7 +143,14 @@ const NavBar = () => {
 
             <button
               onClick={handleAudioToggle}
-              className="ml-6 flex h-4 w-4 cursor-pointer items-center space-x-0.5"
+              className="nav-hover-btn hidden cursor-pointer items-center space-x-0.5 md:block"
+            >
+              {isAudioPlaying ? "關閉BGM" : "開啟BGM"}
+            </button>
+
+            <button
+              onClick={handleAudioToggle}
+              className="ml-4 flex h-4 w-4 cursor-pointer items-center space-x-0.5"
             >
               <audio
                 ref={audioElementRef}
