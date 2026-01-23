@@ -1,10 +1,23 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
+/**
+ * BentoTilt 組件
+ * 實現滑鼠懸停時的 3D 傾斜效果
+ *
+ * 優化說明：
+ * 使用 useRef 直接操作 DOM style，避免 onMouseMove 觸發 React 重新渲染，
+ * 顯著提升動畫效能。
+ *
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - 內部內容
+ * @param {String} props.className - 樣式類名
+ */
 export const BentoTilt = ({ children, className = "" }) => {
-  const [transformStyle, setTransformStyle] = useState("");
+  // 1. Refs
   const itemRef = useRef(null);
 
+  // 2. Logic (Event Handlers)
   const handleMouseMove = (event) => {
     if (!itemRef.current) return;
 
@@ -18,11 +31,15 @@ export const BentoTilt = ({ children, className = "" }) => {
     const tiltY = (relativeX - 0.5) * -5;
 
     const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
-    setTransformStyle(newTransform);
+
+    // Direct DOM Update (Performance)
+    itemRef.current.style.transform = newTransform;
   };
 
   const handleMouseLeave = () => {
-    setTransformStyle("");
+    if (itemRef.current) {
+      itemRef.current.style.transform = "";
+    }
   };
 
   return (
@@ -31,30 +48,47 @@ export const BentoTilt = ({ children, className = "" }) => {
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ transform: transformStyle }}
+      // 使用 CSS transition 確保滑鼠移出時平滑復原，移入時即時響應
+      style={{ transition: "transform 0.1s ease-out" }}
     >
       {children}
     </div>
   );
 };
 
+/**
+ * BentoCard 組件
+ *
+ * @param {Object} props
+ * @param {String} props.src - 背景影片路徑
+ * @param {String|React.ReactNode} props.title - 卡片標題
+ * @param {String} props.description - 卡片描述
+ * @param {Boolean} props.isComingSoon - 是否顯示 Coming Soon 按鈕
+ */
 export const BentoCard = ({ src, title, description, isComingSoon }) => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [hoverOpacity, setHoverOpacity] = useState(0);
+  // 1. Refs
   const hoverButtonRef = useRef(null);
+  const hoverEffectRef = useRef(null);
 
+  // 2. Logic
   const handleMouseMove = (event) => {
-    if (!hoverButtonRef.current) return;
-    const rect = hoverButtonRef.current.getBoundingClientRect();
+    if (!hoverButtonRef.current || !hoverEffectRef.current) return;
 
-    setCursorPosition({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    });
+    const rect = hoverButtonRef.current.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Direct DOM Update (Performance)
+    hoverEffectRef.current.style.background = `radial-gradient(100px circle at ${x}px ${y}px, #656fe288, #00000026)`;
   };
 
-  const handleMouseEnter = () => setHoverOpacity(1);
-  const handleMouseLeave = () => setHoverOpacity(0);
+  const handleMouseEnter = () => {
+    if (hoverEffectRef.current) hoverEffectRef.current.style.opacity = "1";
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverEffectRef.current) hoverEffectRef.current.style.opacity = "0";
+  };
 
   return (
     <div className="relative size-full">
@@ -83,10 +117,12 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
           >
             {/* Radial gradient hover effect */}
             <div
+              ref={hoverEffectRef}
               className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
               style={{
-                opacity: hoverOpacity,
-                background: `radial-gradient(100px circle at ${cursorPosition.x}px ${cursorPosition.y}px, #656fe288, #00000026)`,
+                // 預設樣式，動態部分由 JS 控制
+                background:
+                  "radial-gradient(100px circle at 0px 0px, #656fe288, #00000026)",
               }}
             />
             <TiLocationArrow className="relative z-20" />
@@ -98,6 +134,10 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   );
 };
 
+/**
+ * Features 組件
+ * 展示產品特性的格狀佈局
+ */
 const Features = () => (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
@@ -126,7 +166,7 @@ const Features = () => (
       </BentoTilt>
 
       <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
-        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
+        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1! md:row-span-2!">
           <BentoCard
             src="videos/feature-2.webm"
             title={
@@ -139,7 +179,7 @@ const Features = () => (
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+        <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1! md:ms-0">
           <BentoCard
             src="videos/feature-3.webm"
             title={
@@ -152,7 +192,7 @@ const Features = () => (
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
+        <BentoTilt className="bento-tilt_1 me-14 md:col-span-1! md:me-0">
           <BentoCard
             src="videos/feature-4.webm"
             title={
