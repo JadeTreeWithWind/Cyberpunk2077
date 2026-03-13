@@ -137,7 +137,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
               }}
             />
             <TiLocationArrow className="relative z-20" />
-            <p className="relative z-20">coming soon</p>
+            <p className="relative z-20">敬請期待</p>
           </div>
         )}
       </div>
@@ -148,18 +148,16 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
 /**
  * Features 組件
  * 展示產品特性的格狀佈局
+ *
+ * @returns {JSX.Element} Features 區塊
  */
 const Features = () => (
   <section id="features" className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">
-          Into the Metagame Layer
-        </p>
+        <p className="font-circular-web text-lg text-blue-50">深入元遊戲層</p>
         <p className="font-circular-web max-w-md text-lg text-blue-50 opacity-50">
-          Immerse yourself in a rich and ever-expanding universe where a vibrant
-          array of products converge into an interconnected overlay experience
-          on your world.
+          沉浸在一個豐富且不斷擴展的宇宙中，在這裡，各種充滿活力的產品匯聚在一起，為你的世界帶來互聯的覆蓋層體驗。
         </p>
       </div>
 
@@ -168,10 +166,10 @@ const Features = () => (
           src={VIDEO_PATHS.FEATURE_1} // 使用常數
           title={
             <>
-              radia<b>n</b>t
+              光<b>芒</b>四射
             </>
           }
-          description="A cross-platform metagame app, turning your activities across Web2 and Web3 games into a rewarding adventure."
+          description="一款跨平台的元遊戲應用程式，將你在 Web2 和 Web3 遊戲中的活動轉化為充滿獎勵的冒險。"
           isComingSoon
         />
       </BentoTilt>
@@ -182,10 +180,10 @@ const Features = () => (
             src={VIDEO_PATHS.FEATURE_2}
             title={
               <>
-                zig<b>m</b>a
+                西<b>格</b>瑪
               </>
             }
-            description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+            description="一個受動漫和遊戲啟發的 NFT 系列——準備好進行擴展的 IP。"
             isComingSoon
           />
         </BentoTilt>
@@ -195,10 +193,10 @@ const Features = () => (
             src={VIDEO_PATHS.FEATURE_3}
             title={
               <>
-                n<b>e</b>xus
+                樞<b>紐</b>
               </>
             }
-            description="A gamified social hub, adding a new dimension of play to social interaction for Web3 communities."
+            description="一個遊戲化的社交中心，為 Web3 社群的社交互動增加了一個全新的遊玩維度。"
             isComingSoon
           />
         </BentoTilt>
@@ -208,10 +206,10 @@ const Features = () => (
             src={VIDEO_PATHS.FEATURE_4}
             title={
               <>
-                az<b>u</b>l
+                蔚<b>藍</b>
               </>
             }
-            description="A cross-world AI Agent - elevating your gameplay to be more fun and productive."
+            description="一個跨世界的 AI 代理人——提升你的遊戲體驗，讓其更加有趣和富有成效。"
             isComingSoon
           />
         </BentoTilt>
@@ -219,7 +217,7 @@ const Features = () => (
         <BentoTilt className="bento-tilt_2">
           <div className="flex size-full flex-col justify-between bg-violet-300 p-5">
             <h1 className="bento-title special-font max-w-64 text-black">
-              M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
+              更<b>多</b>內<b>容</b>即<b>將</b>推<b>出</b>。
             </h1>
 
             <TiLocationArrow className="m-5 scale-[5] self-end" />

@@ -10,6 +10,13 @@ const ANIMATION_DURATION = 0.3;
 const ROTATION_SCALE = 10;
 const PERSPECTIVE = 500;
 
+/**
+ * Story 組件
+ * 展示隱藏王國的故事入口
+ * 包含 3D 圖片旋轉互動效果
+ *
+ * @returns {JSX.Element} Story 區塊
+ */
 const Story = () => {
   // 4. 響應式狀態與引用 (Refs)
   const frameRef = useRef(null);
@@ -79,12 +86,12 @@ const Story = () => {
     <section id="story" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="flex size-full flex-col items-center py-10 pb-24">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          the multiversal ip world
+          多重宇宙 IP 世界
         </p>
 
         <div className="relative size-full">
           <AnimatedTitle
-            title="the st<b>o</b>ry of <br /> a hidden real<b>m</b>"
+            title="隱<b>藏</b>王<b>國</b> <br /> 的故<b>事</b>"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
           />
 
@@ -136,16 +143,11 @@ const Story = () => {
         <div className="-mt-80 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50 md:text-start">
-              Where realms converge, lies Zentry and the boundless pillar.
-              Discover its secrets and shape your fate amidst infinite
-              opportunities.
+              當各個領域交匯時，就會發現 Zentry
+              和無盡的支柱。探索它的秘密，並在無限的機遇中塑造你的命運。
             </p>
 
-            <Button
-              id="realm-btn"
-              title="discover prologue"
-              containerClass="mt-5"
-            />
+            <Button id="realm-btn" title="探索序章" containerClass="mt-5" />
           </div>
         </div>
       </div>

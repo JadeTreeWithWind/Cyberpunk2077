@@ -9,24 +9,32 @@ import VideoPreview from "./VideoPreview";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// 3. 常量宣告 (Constants)
 const TOTAL_VIDEOS = 4;
 const VIDEO_DIR = "videos/hero";
 
+/**
+ * 獲取影片路徑
+ * @param {Number} index - 影片索引
+ * @returns {String} 影片路徑
+ */
+const getVideoSrc = (index) => `${VIDEO_DIR}-${index}.webm`;
+
 const Hero = () => {
-  // 1. 響應式狀態 (State)
+  // 4. 響應式狀態 (State)
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  // 2. 計算屬性 (Computed Properties)
+  // 5. 計算屬性 (Computed Properties)
   const isLoading = loadedVideos < TOTAL_VIDEOS - 1;
 
-  // 3. 引用 (Refs)
+  // 6. 引用 (Refs)
   const nextVideoRef = useRef(null);
   const currentVideoRef = useRef(null);
   const videoFrameRef = useRef(null);
 
-  // 4. 偵聽器 (Watchers / Effects)
+  // 7. 偵聽器 (Watchers / Effects)
   useGSAP(
     () => {
       if (hasClicked) {
@@ -72,7 +80,10 @@ const Hero = () => {
     });
   });
 
-  // 5. 核心邏輯與函數 (Functions)
+  // 8. 核心邏輯與函數 (Functions)
+  /**
+   * 處理影片加載完成事件
+   */
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
   };
@@ -85,9 +96,6 @@ const Hero = () => {
     setHasClicked(true);
     setCurrentIndex((prevIndex) => (prevIndex % TOTAL_VIDEOS) + 1);
   };
-
-  // 輔助函數：避免直接在 JSX 拼接字串
-  const getVideoSrc = (index) => `${VIDEO_DIR}-${index}.webm`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
@@ -143,17 +151,17 @@ const Hero = () => {
         </div>
 
         <h1 className="special-font hero-heading text-blue-75 absolute right-5 bottom-5 z-40">
-          G<b>A</b>MING
+          電<b>玩</b>遊戲
         </h1>
 
         <div className="absolute top-0 left-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
             <h1 className="special-font hero-heading text-blue-100">
-              redefi<b>n</b>e
+              重新定<b>義</b>
             </h1>
 
             <p className="font-robert-regular mb-5 max-w-64 text-blue-100">
-              Enter the Metagame Layer <br /> Unleash the Play Economy
+              進入元遊戲層 <br /> 釋放遊戲經濟
             </p>
 
             <Button
@@ -167,7 +175,7 @@ const Hero = () => {
       </div>
 
       <h1 className="special-font hero-heading absolute right-5 bottom-5 text-black">
-        G<b>A</b>MING
+        電<b>玩</b>遊戲
       </h1>
     </div>
   );

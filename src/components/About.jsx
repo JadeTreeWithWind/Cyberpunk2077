@@ -39,19 +39,19 @@ const About = () => {
       <div className="min-h-screen w-screen">
         <div className="relative mt-36 mb-8 flex flex-col items-center gap-5">
           <p className="font-general text-sm uppercase md:text-lg">
-            Welcome to Zentry
+            歡迎來到 Zentry
           </p>
 
           <AnimatedTitle
-            title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
+            title="探<b>索</b>世界上 <br /> 最大的共享<b>冒</b>險"
             containerClass="mt-5 !text-black text-center"
           />
 
           <div className="about-subtext">
-            <p>The Game of Games begins—your life, now an epic MMORPG</p>
+            <p>遊戲中的遊戲已經開始——你的生活，現在是一場史詩級的 MMORPG</p>
             <p className="text-gray-500">
-              Zentry unites every player from countless games and platforms,
-              both digital and physical, into a unified Play Economy
+              Zentry
+              將來自無數遊戲和平台（無論是數位還是實體）的所有玩家聯合起來，形成一個統一的遊戲經濟體
             </p>
           </div>
         </div>
