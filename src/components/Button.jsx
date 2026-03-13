@@ -9,8 +9,9 @@ import clsx from "clsx";
  * @param {ReactNode} rightIcon - 右側圖標
  * @param {ReactNode} leftIcon - 左側圖標
  * @param {string} containerClass - 額外樣式
+ * @param {Function} onClick - 點擊事件
  */
-const Button = ({ id, title, rightIcon, leftIcon, containerClass }) => {
+const Button = ({ id, title, rightIcon, leftIcon, containerClass, onClick }) => {
   return (
     <button
       id={id}
@@ -19,6 +20,7 @@ const Button = ({ id, title, rightIcon, leftIcon, containerClass }) => {
         "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-[#fcee0a] px-7 py-3 text-black",
         containerClass,
       )}
+      onClick={onClick}
     >
       {leftIcon}
 
