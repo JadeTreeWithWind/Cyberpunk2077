@@ -24,10 +24,6 @@ const Contact = () => {
 
         <div className="absolute -top-40 left-20 w-60 sm:top-1/2 md:right-10 md:left-auto lg:top-20 lg:w-80">
           <ImageClipBox
-            src="/img/swordman-partial.webp"
-            clipClass="absolute md:scale-125"
-          />
-          <ImageClipBox
             src="/img/swordman.webp"
             clipClass="sword-man-clip-path md:scale-125"
           />
@@ -35,15 +31,24 @@ const Contact = () => {
 
         <div className="flex flex-col items-center text-center">
           <p className="font-general mb-10 text-[10px] uppercase">
-            加入 Zentry
+            《電馭叛客 2077》發售五週年紀念！
           </p>
 
           <AnimatedTitle
-            title="讓<b>我</b>們共<b>同</b> <br /> 打<b>造</b>電<b>玩</b>遊<b>戲</b> <br /> 的新<b>紀</b>元。"
+            title="傳奇人物之城的時間飛逝<br />感謝玩家一起迎接發售五週年"
             className="special-font !md:text-[6.2rem] font-zentry w-full !text-5xl !leading-[.9] !font-black"
           />
 
-          <Button title="聯絡我們" containerClass="mt-10 cursor-pointer" />
+          <Button
+            title="觀看紀念影片"
+            containerClass="mt-10 cursor-pointer"
+            onClick={() =>
+              window.open(
+                "https://www.youtube.com/watch?v=C9beB4M88NU",
+                "_blank",
+              )
+            }
+          />
         </div>
       </div>
     </div>

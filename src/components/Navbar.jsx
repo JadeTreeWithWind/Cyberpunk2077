@@ -8,7 +8,7 @@ import { TiLocationArrow } from "react-icons/ti";
 import Button from "./Button";
 
 // 3. 常量宣告 (Constants)
-const NAV_ITEMS = ["關於", "介紹", "故事", "聯絡我們"];
+const NAV_ITEMS = ["關於", "介紹", "動畫彩蛋", "週年紀念"];
 const NAV_LINKS = ["#about", "#features", "#story", "#contact"];
 const AUDIO_SRC = "/audio/loop.mp3";
 

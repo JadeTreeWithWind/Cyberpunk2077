@@ -86,12 +86,12 @@ const Story = () => {
     <section id="story" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="flex size-full flex-col items-center py-10 pb-24">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          多重宇宙 IP 世界
+          連動 EdgeRunner 動畫 IP
         </p>
 
         <div className="relative size-full">
           <AnimatedTitle
-            title="隱<b>藏</b>王<b>國</b> <br /> 的故<b>事</b>"
+            title="尋找<b>邊緣行者</b> <br /> 的隱藏<b>彩蛋</b>"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
           />
 
@@ -140,14 +140,14 @@ const Story = () => {
           </div>
         </div>
 
-        <div className="-mt-80 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
+        <div className="-mt-120 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50 md:text-start">
-              當各個領域交匯時，就會發現 Zentry
-              和無盡的支柱。探索它的秘密，並在無限的機遇中塑造你的命運。
+              當你在夜城中穿梭時，或許會發現傳奇 <b>大衛·馬丁尼茲</b> 和他的團隊{" "}
+              <b>邊緣行者</b> 的隱藏彩蛋。
             </p>
 
-            <Button id="realm-btn" title="探索序章" containerClass="mt-5" />
+            <Button id="realm-btn" title="探索夜城" containerClass="mt-5" />
           </div>
         </div>
       </div>

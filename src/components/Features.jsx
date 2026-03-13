@@ -2,11 +2,11 @@ import { useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 const VIDEO_PATHS = {
-  FEATURE_1: "videos/feature-1.webm",
-  FEATURE_2: "videos/feature-2.webm",
-  FEATURE_3: "videos/feature-3.webm",
-  FEATURE_4: "videos/feature-4.webm",
-  FEATURE_5: "videos/feature-5.webm",
+  FEATURE_1: "videos/feature-1.mp4",
+  FEATURE_2: "videos/feature-2.mp4",
+  FEATURE_3: "videos/feature-3.mp4",
+  FEATURE_4: "videos/feature-4.mp4",
+  FEATURE_5: "videos/feature-5.mp4",
 };
 
 /**
@@ -120,7 +120,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
           )}
         </div>
 
-        {isComingSoon && (
+        {/* {isComingSoon && (
           <div
             ref={hoverButtonRef}
             onMouseMove={handleMouseMove}
@@ -139,7 +139,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
             <TiLocationArrow className="relative z-20" />
             <p className="relative z-20">敬請期待</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
@@ -155,35 +155,28 @@ const Features = () => (
   <section id="features" className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">深入元遊戲層</p>
+        <p className="font-circular-web text-lg text-blue-50">傳奇就此展開</p>
         <p className="font-circular-web max-w-md text-lg text-blue-50 opacity-50">
-          沉浸在一個豐富且不斷擴展的宇宙中，在這裡，各種充滿活力的產品匯聚在一起，為你的世界帶來互聯的覆蓋層體驗。
+          化身改造傭兵V，在紙醉金迷的夜城用生命闖出名聲。
+          夜城出傳奇，你又將寫下怎樣的傳奇？
         </p>
       </div>
 
       <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
         <BentoCard
           src={VIDEO_PATHS.FEATURE_1} // 使用常數
-          title={
-            <>
-              光<b>芒</b>四射
-            </>
-          }
-          description="一款跨平台的元遊戲應用程式，將你在 Web2 和 Web3 遊戲中的活動轉化為充滿獎勵的冒險。"
+          title={<>打造專屬角色</>}
+          description="活用強大專精，加上神經機械植入物，打造專屬你的傭兵V。"
           isComingSoon
         />
       </BentoTilt>
 
-      <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
+      <div className="grid h-[90vh] w-full grid-cols-2 grid-rows-3 gap-7 md:grid-rows-2">
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1! md:row-span-2!">
           <BentoCard
             src={VIDEO_PATHS.FEATURE_2}
-            title={
-              <>
-                西<b>格</b>瑪
-              </>
-            }
-            description="一個受動漫和遊戲啟發的 NFT 系列——準備好進行擴展的 IP。"
+            title={<>踏入黑暗未來</>}
+            description="化身強化改造傭兵V，為榮耀和生存奮力一戰。"
             isComingSoon
           />
         </BentoTilt>
@@ -191,12 +184,8 @@ const Features = () => (
         <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1! md:ms-0">
           <BentoCard
             src={VIDEO_PATHS.FEATURE_3}
-            title={
-              <>
-                樞<b>紐</b>
-              </>
-            }
-            description="一個遊戲化的社交中心，為 Web3 社群的社交互動增加了一個全新的遊玩維度。"
+            title={<>締造傳奇</>}
+            description="與強尼銀手一起在夜城冒險，一探他一言難盡的夢想、傷痛和往事。"
             isComingSoon
           />
         </BentoTilt>
@@ -204,36 +193,30 @@ const Features = () => (
         <BentoTilt className="bento-tilt_1 me-14 md:col-span-1! md:me-0">
           <BentoCard
             src={VIDEO_PATHS.FEATURE_4}
-            title={
-              <>
-                蔚<b>藍</b>
-              </>
-            }
-            description="一個跨世界的 AI 代理人——提升你的遊戲體驗，讓其更加有趣和富有成效。"
+            title={<>升級強化內容</>}
+            description="體驗追加任務、載具、義體改造與更多內容。"
             isComingSoon
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_2">
-          <div className="flex size-full flex-col justify-between bg-violet-300 p-5">
+        {/* <BentoTilt className="bento-tilt_2">
+          <div className="bg-[#fcee0a0 flex size-full flex-col justify-between bg-[#fcee0a] p-5">
             <h1 className="bento-title special-font max-w-64 text-black">
               更<b>多</b>內<b>容</b>即<b>將</b>推<b>出</b>。
             </h1>
 
             <TiLocationArrow className="m-5 scale-[5] self-end" />
           </div>
-        </BentoTilt>
-
-        <BentoTilt className="bento-tilt_2">
-          <video
-            src={VIDEO_PATHS.FEATURE_5}
-            loop
-            muted
-            autoPlay
-            className="size-full object-cover object-center"
-          />
-        </BentoTilt>
+        </BentoTilt> */}
       </div>
+      <BentoTilt className="border-hsla relative mt-7 h-90 w-full overflow-hidden rounded-md md:h-[50vh]">
+        <BentoCard
+          src={VIDEO_PATHS.FEATURE_5}
+          title={<>更多內容即將推出</>}
+          description="更多內容即將推出，敬請期待。"
+          isComingSoon
+        />
+      </BentoTilt>
     </div>
   </section>
 );

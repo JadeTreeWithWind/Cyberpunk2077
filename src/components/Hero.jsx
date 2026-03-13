@@ -18,7 +18,7 @@ const VIDEO_DIR = "videos/hero";
  * @param {Number} index - 影片索引
  * @returns {String} 影片路徑
  */
-const getVideoSrc = (index) => `${VIDEO_DIR}-${index}.webm`;
+const getVideoSrc = (index) => `${VIDEO_DIR}-${index}.mp4`;
 
 const Hero = () => {
   // 4. 響應式狀態 (State)
@@ -151,31 +151,33 @@ const Hero = () => {
         </div>
 
         <h1 className="special-font hero-heading text-blue-75 absolute right-5 bottom-5 z-40">
-          電<b>玩</b>遊戲
+          2<b>0</b>77
         </h1>
 
         <div className="absolute top-0 left-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
             <h1 className="special-font hero-heading text-blue-100">
-              重新定<b>義</b>
+              <b>電馭叛客</b>
             </h1>
 
-            <p className="font-robert-regular mb-5 max-w-64 text-blue-100">
-              進入元遊戲層 <br /> 釋放遊戲經濟
+            <p className="font-robert-regular mt-2 mb-5 max-w-96 text-blue-100">
+              在一望無際的夜城開放世界寫下自身傳奇，
+              <br />
+              讓每一次抉擇左右劇情與世界的走向。
             </p>
 
             <Button
               id="watch-trailer"
               title="觀看預告"
               leftIcon={<TiLocationArrow />}
-              containerClass="bg-yellow-300 flex-center gap-1"
+              containerClass="bg-[#fcee0a] flex-center gap-1"
             />
           </div>
         </div>
       </div>
 
       <h1 className="special-font hero-heading absolute right-5 bottom-5 text-black">
-        電<b>玩</b>遊戲
+        2<b>0</b>77
       </h1>
     </div>
   );
