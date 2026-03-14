@@ -143,11 +143,21 @@ const Story = () => {
         <div className="-mt-120 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50 md:text-start">
-              當你在夜城中穿梭時，或許會發現傳奇 <b>大衛·馬丁尼茲</b> 和他的團隊{" "}
-              <b>邊緣行者</b> 的隱藏彩蛋。
+              當你在夜城中穿梭時，或許會發現傳奇 <b>大衛·馬丁尼茲</b>{" "}
+              和他團隊成員的隱藏彩蛋。
             </p>
 
-            <Button id="realm-btn" title="探索夜城" containerClass="mt-5" />
+            <Button
+              id="realm-btn"
+              title="觀看動畫"
+              containerClass="mt-5"
+              onClick={() =>
+                window.open(
+                  "https://www.netflix.com/tw/title/81054853",
+                  "_blank",
+                )
+              }
+            />
           </div>
         </div>
       </div>

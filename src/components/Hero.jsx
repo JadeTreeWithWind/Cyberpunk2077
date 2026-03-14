@@ -171,6 +171,12 @@ const Hero = () => {
               title="觀看預告"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-[#fcee0a] flex-center gap-1"
+              onClick={() =>
+                window.open(
+                  "https://www.youtube.com/watch?v=1gvGn8NtIpE",
+                  "_blank",
+                )
+              }
             />
           </div>
         </div>
