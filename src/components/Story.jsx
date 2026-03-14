@@ -105,7 +105,8 @@ const Story = () => {
                   onMouseUp={handleMouseLeave}
                   onMouseEnter={handleMouseLeave}
                   src={IMG_SRC} // 使用常數
-                  alt="Entrance to the hidden realm" // 修正 Alt 屬性
+                  alt="Edgerunners 邊緣行者"
+                  loading="lazy"
                   className="object-contain"
                 />
               </div>

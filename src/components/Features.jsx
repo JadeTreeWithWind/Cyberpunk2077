@@ -80,28 +80,7 @@ export const BentoTilt = ({ children, className = "" }) => {
  * @param {String} props.description - 卡片描述
  * @param {Boolean} props.isComingSoon - 是否顯示 Coming Soon 按鈕
  */
-export const BentoCard = ({ src, title, description, isComingSoon }) => {
-  const hoverButtonRef = useRef(null);
-  const hoverEffectRef = useRef(null);
-
-  const handleMouseMove = (event) => {
-    if (!hoverButtonRef.current || !hoverEffectRef.current) return;
-
-    const rect = hoverButtonRef.current.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    hoverEffectRef.current.style.background = `radial-gradient(100px circle at ${x}px ${y}px, #656fe288, #00000026)`;
-  };
-
-  const handleMouseEnter = () => {
-    if (hoverEffectRef.current) hoverEffectRef.current.style.opacity = "1";
-  };
-
-  const handleMouseLeave = () => {
-    if (hoverEffectRef.current) hoverEffectRef.current.style.opacity = "0";
-  };
-
+export const BentoCard = ({ src, title, description }) => {
   return (
     <div className="relative size-full">
       <video
@@ -119,27 +98,6 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
             <p className="mt-3 max-w-64 text-xs md:text-base">{description}</p>
           )}
         </div>
-
-        {/* {isComingSoon && (
-          <div
-            ref={hoverButtonRef}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs text-white/20 uppercase"
-          >
-            <div
-              ref={hoverEffectRef}
-              className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-              style={{
-                background:
-                  "radial-gradient(100px circle at 0px 0px, #656fe288, #00000026)",
-              }}
-            />
-            <TiLocationArrow className="relative z-20" />
-            <p className="relative z-20">敬請期待</p>
-          </div>
-        )} */}
       </div>
     </div>
   );
@@ -153,7 +111,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
  */
 const Features = () => (
   <section id="features" className="bg-black pb-52">
-    <div className="container mx-auto px-3 md:px-10">
+    <div className="container mx-auto max-w-7xl px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-blue-50">傳奇就此展開</p>
         <p className="font-circular-web max-w-md text-lg text-blue-50 opacity-50">
@@ -171,7 +129,7 @@ const Features = () => (
         />
       </BentoTilt>
 
-      <div className="grid h-[90vh] w-full grid-cols-2 grid-rows-3 gap-7 md:grid-rows-2">
+      <div className="grid h-[110vh] w-full grid-cols-2 grid-rows-3 gap-7 md:grid-rows-2">
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1! md:row-span-2!">
           <BentoCard
             src={VIDEO_PATHS.FEATURE_2}

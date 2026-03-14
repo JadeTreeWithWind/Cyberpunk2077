@@ -1,12 +1,9 @@
-import { FaDiscord, FaTwitter, FaYoutube, FaMedium } from "react-icons/fa";
-
-const socialLinks = [
-  { href: "https://discord.com", icon: <FaDiscord /> },
-  { href: "https://twitter.com", icon: <FaTwitter /> },
-  { href: "https://youtube.com", icon: <FaYoutube /> },
-  { href: "https://medium.com", icon: <FaMedium /> },
-];
-
+/**
+ * Footer 組件
+ * 渲染頁尾區塊
+ *
+ * @returns {JSX.Element} Footer 區塊
+ */
 const Footer = () => {
   return (
     <footer className="w-screen bg-[#fcee0a] py-4 text-black">
@@ -15,7 +12,9 @@ const Footer = () => {
           @TJ.Wang 2026. All rights reserved.
         </p>
 
-        {/* <div className="flex justify-center gap-4 md:justify-start">
+        {/* 
+        // 社交連結 (未來擴展用)
+        <div className="flex justify-center gap-4 md:justify-start">
           {socialLinks.map((link, index) => (
             <a
               key={index}
@@ -27,14 +26,18 @@ const Footer = () => {
               {link.icon}
             </a>
           ))}
-        </div> */}
+        </div> 
+        */}
 
-        {/* <a
+        {/* 
+        // 法律資訊 (未來擴展用)
+        <a
           href="#privacy-policy"
           className="text-center text-sm font-light hover:underline md:text-right"
         >
           隱私權政策
-        </a> */}
+        </a> 
+        */}
       </div>
     </footer>
   );

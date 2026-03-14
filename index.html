@@ -4,11 +4,48 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Preload Critical Fonts -->
+    <link
+      rel="preload"
+      href="/fonts/zentry-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/general.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Preload LCP Video -->
+    <link
+      rel="preload"
+      href="/videos/hero-1.mp4"
+      as="video"
+      type="video/mp4"
+      fetchpriority="high"
+    />
+
     <title>《電馭叛客 2077》| 探索遊戲、其他更多內容</title>
     <meta
       name="description"
       content="《電馭叛客 2077》官方網站——探索遊戲、其他更多內容"
     />
+
+    <!-- Speculation Rules API -->
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "source": "list",
+            "urls": ["/index.html"]
+          }
+        ]
+      }
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
