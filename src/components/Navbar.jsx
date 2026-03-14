@@ -7,25 +7,26 @@ import { TiLocationArrow } from "react-icons/ti";
 // 內部組件
 import Button from "./Button";
 
-// Constants
-const NAV_ITEMS = ["關於", "介紹", "故事", "聯絡我們"];
+// 3. 常量宣告 (Constants)
+const NAV_ITEMS = ["關於", "介紹", "動畫彩蛋", "週年紀念"];
 const NAV_LINKS = ["#about", "#features", "#story", "#contact"];
 const AUDIO_SRC = "/audio/loop.mp3";
 
 const NavBar = () => {
-  // 1. State
+  // 4. 響應式狀態 (State)
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
 
-  // 2. Refs
+  // 5. 引用 (Refs)
   const navContainerRef = useRef(null);
   const audioElementRef = useRef(null);
   const lastScrollYRef = useRef(0);
+  const isNavVisibleRef = useRef(true);
 
-  // 3. Computed / Hooks Data
+  // 6. 計算屬性 (Computed Properties)
   const { y: currentScrollY } = useWindowScroll();
 
-  // 4. Handlers
+  // 7. 核心邏輯與函數 (Functions)
   /**
    * 切換音效播放狀態與視覺指示器
    */
@@ -34,6 +35,10 @@ const NavBar = () => {
     setIsIndicatorActive((prev) => !prev);
   };
 
+  /**
+   * 處理導航點擊與平滑滾動
+   * @param {React.MouseEvent} e - 點擊事件
+   */
   const handleScroll = (e) => {
     e.preventDefault();
     const href = e.currentTarget.getAttribute("href");
@@ -54,7 +59,7 @@ const NavBar = () => {
     }
   };
 
-  // 5. Effects (邏輯與 Side Effects)
+  // 8. 偵聽器與生命週期 (Watchers & Lifecycle)
 
   // 管理音頻播放
   useEffect(() => {
@@ -70,11 +75,10 @@ const NavBar = () => {
     }
   }, [isAudioPlaying]);
 
-  const isNavVisibleRef = useRef(true);
-
+  // 管理導航欄顯示/隱藏
   useEffect(() => {
     if (currentScrollY === 0) {
-      // Topmost
+      // 頂部狀態：顯示並移除浮動樣式
       isNavVisibleRef.current = true;
       navContainerRef.current.classList.remove("floating-nav");
       gsap.to(navContainerRef.current, {
@@ -83,7 +87,7 @@ const NavBar = () => {
         duration: 0.2,
       });
     } else if (currentScrollY > lastScrollYRef.current) {
-      // Scrolling Down
+      // 向下滾動：隱藏導航欄
       navContainerRef.current.classList.add("floating-nav");
       if (isNavVisibleRef.current) {
         isNavVisibleRef.current = false;
@@ -94,7 +98,7 @@ const NavBar = () => {
         });
       }
     } else if (currentScrollY < lastScrollYRef.current) {
-      // Scrolling Up
+      // 向上滾動：顯示導航欄
       navContainerRef.current.classList.add("floating-nav");
       if (!isNavVisibleRef.current) {
         isNavVisibleRef.current = true;
@@ -124,6 +128,12 @@ const NavBar = () => {
               title="前往購買"
               rightIcon={<TiLocationArrow />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+              onClick={() =>
+                window.open(
+                  "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
+                  "_blank",
+                )
+              }
             />
           </div>
 

@@ -1,17 +1,28 @@
+import { Suspense, lazy } from "react";
+
 import Hero from "./components/Hero";
-import About from "./components/About";
 import Navbar from "./components/Navbar";
-import Features from "./components/Features";
-import Story from "./components/Story";
+
+const About = lazy(() => import("./components/About"));
+const Features = lazy(() => import("./components/Features"));
+const Story = lazy(() => import("./components/Story"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   return (
-    <main className="relative min-h-screen w-screen">
+    <main className="relative min-h-screen w-screen overflow-x-hidden">
       <Navbar />
       <Hero />
-      <About />
-      <Features />
-      <Story />
+      <Suspense
+        fallback={<div className="flex-center h-screen w-full">載入中...</div>}
+      >
+        <About />
+        <Features />
+        <Story />
+        <Contact />
+        <Footer />
+      </Suspense>
     </main>
   );
 }

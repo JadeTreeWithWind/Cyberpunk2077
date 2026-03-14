@@ -1,8 +1,7 @@
-@import url("https://fonts.cdnfonts.com/css/general-sans");
 @import "tailwindcss";
 
 @theme {
-  --font-zentry: "zentry", sans-serif;
+  --font-zentry: "Noto Sans TC", sans-serif;
   --font-general: "general", sans-serif;
   --font-circular-web: "circular-web", sans-serif;
   --font-robert-medium: "robert-medium", sans-serif;
@@ -88,7 +87,7 @@ body {
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl leading-[.8] text-white uppercase sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-4xl leading-[.8] text-white uppercase sm:px-32 md:text-[6rem];
   }
 
   .animated-word {

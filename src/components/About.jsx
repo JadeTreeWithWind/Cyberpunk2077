@@ -39,19 +39,22 @@ const About = () => {
       <div className="min-h-screen w-screen">
         <div className="relative mt-36 mb-8 flex flex-col items-center gap-5">
           <p className="font-general text-sm uppercase md:text-lg">
-            Welcome to Zentry
+            歡迎來到 夜之城
           </p>
 
           <AnimatedTitle
-            title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
+            title="探<b>索</b>這座 <br /> 築夢<b>之</b>城"
             containerClass="mt-5 !text-black text-center"
           />
 
           <div className="about-subtext">
-            <p>The Game of Games begins—your life, now an epic MMORPG</p>
+            <p>探索大都會夜城</p>
             <p className="text-gray-500">
-              Zentry unites every player from countless games and platforms,
-              both digital and physical, into a unified Play Economy
+              邂逅各式各樣千奇百怪的人們
+              <br />
+              完成一件件令人難忘的委託
+              <br />
+              成為夜城傳奇
             </p>
           </div>
         </div>
