@@ -111,7 +111,7 @@ export const BentoCard = ({ src, title, description }) => {
  */
 const Features = () => (
   <section id="features" className="bg-black pb-52">
-    <div className="container mx-auto max-w-355 px-3 md:px-10">
+    <div className="container mx-auto max-w-350 px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-blue-50">傳奇就此展開</p>
         <p className="font-circular-web max-w-md text-lg text-blue-50 opacity-50">
@@ -129,7 +129,7 @@ const Features = () => (
         />
       </BentoTilt>
 
-      <div className="grid h-[80vh] w-full grid-cols-2 grid-rows-3 gap-7 md:grid-rows-2">
+      <div className="grid h-[1100px] w-full grid-cols-2 grid-rows-3 gap-7 md:grid-rows-2">
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1! md:row-span-2!">
           <BentoCard
             src={VIDEO_PATHS.FEATURE_2}
