@@ -54,7 +54,7 @@ const Contact = () => {
 
         {/* 核心內容區 */}
         <div className="flex flex-col items-center text-center">
-          <p className="font-general mb-10 text-[10px] uppercase">
+          <p className="font-general mb-10 text-sm md:text-lg">
             《電馭叛客 2077》發售五週年紀念！
           </p>
 

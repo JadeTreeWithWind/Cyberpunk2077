@@ -113,8 +113,10 @@ const Features = () => (
   <section id="features" className="bg-black pb-52">
     <div className="container mx-auto max-w-350 px-3 md:px-10">
       <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">傳奇就此展開</p>
-        <p className="font-circular-web max-w-md text-lg text-blue-50 opacity-50">
+        <p className="font-circular-web text-lg text-blue-50 md:text-xl">
+          傳奇就此展開
+        </p>
+        <p className="font-circular-web text-md mt-1 max-w-md text-blue-50 opacity-50 md:text-lg">
           化身改造傭兵V，在紙醉金迷的夜城用生命闖出名聲。
           夜城出傳奇，你又將寫下怎樣的傳奇？
         </p>
