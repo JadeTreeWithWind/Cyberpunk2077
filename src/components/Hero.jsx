@@ -111,7 +111,7 @@ const Hero = () => {
 
       <div
         ref={videoFrameRef}
-        className="bg-blue-75 relative z-10 h-dvh w-screen overflow-hidden rounded-lg"
+        className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-black"
       >
         <div>
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
