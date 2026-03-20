@@ -141,7 +141,7 @@ const Story = () => {
           </div>
         </div>
 
-        <div className="-mt-120 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
+        <div className="-mt-60 flex w-full justify-center md:me-44 md:-mt-64 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50 md:text-start">
               當你在夜城中穿梭時，或許會發現傳奇 <b>大衛·馬丁尼茲</b>{" "}

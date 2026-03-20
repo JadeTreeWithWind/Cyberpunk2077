@@ -45,7 +45,7 @@ const Contact = () => {
         </div>
 
         {/* 右側裝飾圖片 (劍士) */}
-        <div className="absolute -top-40 left-20 w-60 sm:top-1/2 md:right-10 md:left-auto lg:top-20 lg:w-80">
+        <div className="absolute -top-20 left-20 w-60 sm:top-1/2 md:right-10 md:left-auto lg:top-20 lg:w-80">
           <ImageClipBox
             src="/img/swordman.webp"
             clipClass="sword-man-clip-path md:scale-125"
