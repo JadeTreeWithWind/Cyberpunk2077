@@ -60,7 +60,7 @@ const Contact = () => {
 
           <AnimatedTitle
             title="傳奇人物之城的時間飛逝<br />感謝玩家一起迎接發售五週年"
-            className="special-font !md:text-[6.2rem] font-zentry w-full text-5xl! leading-[.9]! font-black!"
+            containerClass="special-font !md:text-[6rem] font-zentry w-full text-5xl leading-[.9]! font-black!"
           />
 
           <Button
@@ -70,6 +70,7 @@ const Contact = () => {
               window.open(
                 "https://www.youtube.com/watch?v=C9beB4M88NU",
                 "_blank",
+                "noopener,noreferrer",
               )
             }
           />

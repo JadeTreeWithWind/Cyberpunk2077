@@ -12,32 +12,6 @@ const Footer = () => {
           @TJ.Wang 2026. All rights reserved.
         </p>
 
-        {/* 
-        // 社交連結 (未來擴展用)
-        <div className="flex justify-center gap-4 md:justify-start">
-          {socialLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-black transition-colors duration-500 ease-in-out hover:text-white"
-            >
-              {link.icon}
-            </a>
-          ))}
-        </div> 
-        */}
-
-        {/* 
-        // 法律資訊 (未來擴展用)
-        <a
-          href="#privacy-policy"
-          className="text-center text-sm font-light hover:underline md:text-right"
-        >
-          隱私權政策
-        </a> 
-        */}
       </div>
     </footer>
   );

@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { TiLocationArrow } from "react-icons/ti";
 
 const VIDEO_PATHS = {
   FEATURE_1: "videos/feature-1.mp4",
@@ -89,6 +88,7 @@ export const BentoCard = ({ src, title, description }) => {
         muted
         autoPlay
         playsInline
+        preload="none"
         className="absolute top-0 left-0 size-full object-cover object-center"
       />
       <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
@@ -159,15 +159,6 @@ const Features = () => (
           />
         </BentoTilt>
 
-        {/* <BentoTilt className="bento-tilt_2">
-          <div className="bg-[#fcee0a0 flex size-full flex-col justify-between bg-[#fcee0a] p-5">
-            <h1 className="bento-title special-font max-w-64 text-black">
-              更<b>多</b>內<b>容</b>即<b>將</b>推<b>出</b>。
-            </h1>
-
-            <TiLocationArrow className="m-5 scale-[5] self-end" />
-          </div>
-        </BentoTilt> */}
       </div>
       <BentoTilt className="border-hsla relative mt-7 h-90 w-full overflow-hidden rounded-md md:h-[50vh]">
         <BentoCard

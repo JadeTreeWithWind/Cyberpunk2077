@@ -156,6 +156,7 @@ const Story = () => {
                 window.open(
                   "https://www.netflix.com/tw/title/81054853",
                   "_blank",
+                  "noopener,noreferrer",
                 )
               }
             />

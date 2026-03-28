@@ -132,6 +132,7 @@ const NavBar = () => {
                 window.open(
                   "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
                   "_blank",
+                  "noopener,noreferrer",
                 )
               }
             />
@@ -158,17 +159,20 @@ const NavBar = () => {
               {isAudioPlaying ? "關閉BGM" : "開啟BGM"}
             </button>
 
+            {/* audio 元素必須放在 button 外部，避免無效的 HTML 巢狀結構 */}
+            <audio
+              ref={audioElementRef}
+              className="hidden"
+              src={AUDIO_SRC}
+              loop
+            />
+
             <button
               onClick={handleAudioToggle}
+              aria-label={isAudioPlaying ? "關閉背景音樂" : "開啟背景音樂"}
+              aria-pressed={isAudioPlaying}
               className="ml-4 flex h-4 w-4 cursor-pointer items-center space-x-0.5"
             >
-              <audio
-                ref={audioElementRef}
-                className="hidden"
-                src={AUDIO_SRC}
-                loop
-              />
-
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}
