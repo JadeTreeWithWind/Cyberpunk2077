@@ -64,6 +64,7 @@ const About = () => {
             <img
               src={ABOUT_IMG_SRC}
               alt=""
+              role="presentation"
               loading="lazy"
               className="absolute top-0 left-0 size-full object-cover"
             />

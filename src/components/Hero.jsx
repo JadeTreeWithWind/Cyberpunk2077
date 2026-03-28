@@ -27,7 +27,8 @@ const Hero = () => {
   const [loadedVideos, setLoadedVideos] = useState(0);
 
   // 5. 計算屬性 (Computed Properties)
-  const isLoading = loadedVideos < TOTAL_VIDEOS - 1;
+  // 只等背景主影片（autoPlay）載完即可，次要影片設為 preload="none" 不參與計數
+  const isLoading = loadedVideos < 1;
 
   // 6. 引用 (Refs)
   const nextVideoRef = useRef(null);
@@ -103,7 +104,7 @@ const Hero = () => {
         <div className="flex-center absolute z-100 h-dvh w-screen overflow-hidden bg-violet-50 opacity-90">
           <img
             src="/img/loading.webp"
-            alt="loading"
+            alt="遊戲畫面載入中"
             className="h-dvh w-screen object-cover object-center"
           />
         </div>
@@ -132,11 +133,11 @@ const Hero = () => {
                 <video
                   ref={currentVideoRef}
                   src={getVideoSrc((currentIndex % TOTAL_VIDEOS) + 1)}
+                  autoPlay
                   loop
                   muted
                   playsInline
                   className="size-64 origin-center scale-150 object-cover object-center"
-                  onLoadedData={handleVideoLoad}
                 />
               </div>
             </VideoPreview>
@@ -148,8 +149,8 @@ const Hero = () => {
             loop
             muted
             playsInline
+            preload="none"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
-            onLoadedData={handleVideoLoad}
           />
           <video
             src={getVideoSrc(currentIndex)}
@@ -188,6 +189,7 @@ const Hero = () => {
                 window.open(
                   "https://www.youtube.com/watch?v=1gvGn8NtIpE",
                   "_blank",
+                  "noopener,noreferrer",
                 )
               }
             />
