@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"; // React 核心優先
+import { useEffect, useRef, useState } from "react"; // React 核心優先
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -25,10 +25,24 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
   const [loadedVideos, setLoadedVideos] = useState(0);
+  const [overlayVisible, setOverlayVisible] = useState(true);
+  const minTimeElapsedRef = useRef(false);
+  const videoLoadedRef = useRef(false);
 
   // 5. 計算屬性 (Computed Properties)
   // 只等背景主影片（autoPlay）載完即可，次要影片設為 preload="none" 不參與計數
   const isLoading = loadedVideos < 1;
+
+  // 最短顯示 1 秒：計時到後若影片已載完則立即淡出
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      minTimeElapsedRef.current = true;
+      if (videoLoadedRef.current) {
+        setTimeout(() => setOverlayVisible(false), 300);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // 6. 引用 (Refs)
   const nextVideoRef = useRef(null);
@@ -86,7 +100,11 @@ const Hero = () => {
    * 處理影片加載完成事件
    */
   const handleVideoLoad = () => {
+    videoLoadedRef.current = true;
     setLoadedVideos((prev) => prev + 1);
+    if (minTimeElapsedRef.current) {
+      setTimeout(() => setOverlayVisible(false), 300);
+    }
   };
 
   /**
@@ -100,8 +118,10 @@ const Hero = () => {
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {isLoading && (
-        <div className="flex-center absolute z-100 h-dvh w-screen overflow-hidden bg-violet-50 opacity-90">
+      {overlayVisible && (
+        <div
+          className={`flex-center absolute z-100 h-dvh w-screen overflow-hidden bg-violet-50 transition-opacity duration-700 ${isLoading ? "opacity-90" : "opacity-0"}`}
+        >
           <img
             src="/img/loading.webp"
             alt="遊戲畫面載入中"
@@ -137,11 +157,24 @@ const Hero = () => {
                   loop
                   muted
                   playsInline
+                  preload="none"
                   className="size-64 origin-center scale-150 object-cover object-center"
                 />
               </div>
             </VideoPreview>
           </div>
+
+          {/* 預載下一個縮圖影片：確保點擊後立即顯示，不出現黑畫面 */}
+          <video
+            src={getVideoSrc(
+              ((currentIndex % TOTAL_VIDEOS) + 1) % TOTAL_VIDEOS + 1,
+            )}
+            preload="metadata"
+            muted
+            playsInline
+            aria-hidden="true"
+            className="absolute hidden"
+          />
 
           <video
             ref={nextVideoRef}
@@ -159,6 +192,7 @@ const Hero = () => {
             muted
             playsInline
             fetchpriority="high"
+            poster="/img/loading.webp"
             className="absolute top-0 left-0 size-full object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
